@@ -1,0 +1,257 @@
+/* 全局样式 */
+.body-A {
+  margin: 0;
+  padding: 0;
+  background-color: #C8DCFB;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: auto;
+  font-family: "Microsoft YaHei", sans-serif;
+}
+
+/* 卡片主体 */
+.card {
+  margin: 30px auto;
+  width: 85vw;
+  padding: 30px;
+  background: linear-gradient(45deg, #FFD7DE, #C8DCF0);
+  background-size: 200% 200%;
+  animation: bgFlow 15s infinite ease-in-out;
+  border-radius: 45px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+  box-sizing: border-box;
+}
+
+@keyframes bgFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 头像+标题 */
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-left: 10px;
+}
+
+.box-A {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  margin: 0;
+  font-size: 50px;
+  background: linear-gradient(90deg, #0f3426, #d4af37, #f0e68c, #1a4d3b);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textGoldFlow 5s infinite ease-in-out;
+}
+
+@keyframes textGoldFlow {
+  0% { background-position: -200% 45%; }
+  50% { background-position: 0% 45%; }
+  100% { background-position: -200% 45% }
+}
+
+.subtitle {
+  margin: 5px 0 0 3px;
+  font-size: 20px;
+  color: #d4af37;
+  text-shadow: 0 0 5px rgba(212,175,55,0.4);
+}
+
+/* 顶部选项栏 */
+.option-bar {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+.option-item {
+  color: #444;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.option-item.active, .option-item:hover {
+  color: white;
+  background-color: rgba(255,138,161,0.6);
+  box-shadow: 0 2px 8px rgba(255,138,161,0.3);
+}
+
+/* 主体容器 */
+.main-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* 左侧文章列表 */
+.article-list {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.article-item {
+  background-color: rgba(255,255,255,0.8);
+  padding: 18px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.article-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: white;
+}
+
+.article-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #222;
+}
+
+.article-meta {
+  margin: 0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* 右侧内容展示区 */
+.content-display {
+  flex: 2;
+  min-width: 300px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  color: #444;
+  line-height: 1.8;
+  min-height: 500px;
+}
+
+/* MD内容样式优化 */
+.content-display h1, .content-display h2 {
+  color: #0f3426;
+  margin: 25px 0 15px;
+  border-bottom: 1px dashed #f0f0f0;
+  padding-bottom: 8px;
+}
+
+.content-display h1 {
+  font-size: 28px;
+}
+
+.content-display h2 {
+  font-size: 22px;
+}
+
+.content-display ul, .content-display ol {
+  padding-left: 25px;
+  margin: 12px 0;
+}
+
+.content-display code {
+  background-color: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #d32f2f;
+}
+
+.content-display pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 15px 0;
+  border-left: 3px solid #FF8AA1;
+}
+
+/* 图片基础样式（配合JS控制大小） */
+.content-display img {
+  max-width: 100%; /* 兜底：不超过内容区宽度 */
+  height: auto;    /* 保持比例 */
+}
+
+/* 页脚 */
+.footer {
+  text-align: center;
+  color: #777;
+  margin-top: 30px;
+  padding: 20px 0 10px;
+  border-top: 1px solid rgba(255,255,255,0.5);
+  font-size: 14px;
+}
+
+.footer-extra {
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* 响应式适配（图片同步适配手机端） */
+@media (max-width: 768px) {
+  .card {
+    width: 92vw;
+    padding: 20px;
+    border-radius: 25px;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .option-bar {
+    gap: 15px;
+  }
+
+  .option-item {
+    font-size: 16px;
+    padding: 5px 12px;
+  }
+
+  .main-container {
+    gap: 20px;
+  }
+
+  .article-list {
+    max-width: 100%;
+  }
+
+  .content-display {
+    padding: 20px;
+    min-height: 400px;
+  }
+
+  /* 手机端图片最大宽度适配 */
+  .content-display img {
+    max-width: 95%;
+  }
+}
