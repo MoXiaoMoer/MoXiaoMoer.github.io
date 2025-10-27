@@ -256,3 +256,34 @@
     max-width: 95%;
   }
 }
+/* 网页进入模糊→清晰动画核心样式 */
+.page-container {
+  /* 初始状态：最大模糊（10px），确保页面加载时先模糊 */
+  filter: blur(10px);
+  /* 动画：2.5秒内从模糊到清晰（时长可改2-3秒），匀速过渡 */
+  animation: blurToClear 2.5s ease forwards;
+  /* 确保容器占满页面，避免内容偏移 */
+  width: 100%;
+  height: 100%;
+}
+
+/* 定义模糊→清晰动画关键帧 */
+@keyframes blurToClear {
+  0% {
+    /* 动画开始：最大模糊（10px，数值越大模糊越重） */
+    filter: blur(10px);
+    opacity: 0.8; /* 可选：初始轻微透明，增强过渡感 */
+  }
+  100% {
+    /* 动画结束：无模糊（0），完全清晰 */
+    filter: blur(0);
+    opacity: 1; /* 完全不透明 */
+  }
+}
+
+/* 响应式适配：手机端保持动画一致，无需修改模糊参数 */
+@media (max-width: 768px) {
+  .page-container {
+    animation: blurToClear 2.5s ease forwards; /* 与电脑端统一时长 */
+  }
+}
