@@ -1,614 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XiaoMoer的小窝</title>
-    <style>
-        :root {
-            --primary-color: #C8DCF0;
-            --secondary-color: #FFD7DE;
-            --card-bg: rgba(255, 255, 255, 0.7);
-            --text-color: #333;
-            --border-radius: 16px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            color: var(--text-color);
-            filter: blur(10px);
-            min-height: 100vh;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            max-width: 1200px;
-            filter: blur(10px);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* 头部样式 */
-        header {
-            display: flex;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            filter: blur(10px);
-            border-radius: 50%;
-            margin-right: 20px;
-            border: 3px solid white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .title {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-size: 2.5rem;
-            font-weight: bold;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* 内容卡片样式 */
-        .content-card {
-            background: var(--card-bg);
-            filter: blur(10px);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        /* 标签切换区域 */
-        .tab-container {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .tab {
-            padding: 12px 24px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-
-        .tab.active {
-            color: #5a67d8;
-            border-bottom: 3px solid #5a67d8;
-        }
-
-        .tab:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-            transform: scale(1.05);
-        }
-
-        /* 文章列表样式 */
-        .article-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .article-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-        }
-
-        .article-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #2d3748;
-        }
-
-        .article-summary {
-            color: #718096;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .article-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #a0aec0;
-        }
-
-        /* 加载更多按钮 */
-        .load-more {
-            display: block;
-            margin: 30px auto;
-            padding: 12px 24px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            border-radius: 30px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .load-more:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 登录表单样式 */
-        .login-form {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            width: 90%;
-            max-width: 400px;
-            display: none;
-        }
-
-        .login-form h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .login-btn:hover {
-            transform: scale(1.02);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #718096;
-        }
-
-        /* 管理按钮样式 */
-        .admin-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-
-        .admin-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* 骨架屏样式 */
-        .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-            border-radius: 4px;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .skeleton-title {
-            height: 20px;
-            margin-bottom: 10px;
-        }
-
-        .skeleton-summary {
-            height: 16px;
-            margin-bottom: 10px;
-        }
-
-        .skeleton-meta {
-            height: 14px;
-            width: 70%;
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 4.1667%; /* 左右边距为页面宽度的1/24 */
-            }
-            
-            .title {
-                font-size: 1.8rem;
-            }
-            
-            .article-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .content-card {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title {
-                font-size: 1.5rem;
-            }
-            
-            .tab {
-                padding: 10px 16px;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>XiaoMoer的小窝</title>
+  <link rel="icon" href="icon.ico" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous"/>
+  <!-- Highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+  <!-- Page styles -->
+  <link rel="stylesheet" href="config/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- 头部区域 -->
-        <header>
-            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iNDAiIGN5PSI0MCIgcj0iNDAiIGZpbGw9IiNDOERDRjAiLz4KPHBhdGggZD0iTTM1IDI1QzM1IDI1IDQ1IDIwIDUwIDMwQzU1IDQwIDQ1IDU1IDM1IDU1QzI1IDU1IDIwIDQ1IDMwIDM1QzQwIDI1IDM1IDI1IDM1IDI1WiIgZmlsbD0iI0ZGRjdGRSIvPgo8L3N2Zz4K" alt="头像" class="avatar">
-            <h1 class="title">XiaoMoer的小窝</h1>
-        </header>
+  <div id="dynamic-bg" class="dynamic-bg"></div>
 
-        <!-- 内容区域 -->
-        <div class="content-card">
-            <!-- 分类切换区 -->
-            <div class="tab-container">
-                <div class="tab active" data-category="blog">博客随笔</div>
-                <div class="tab" data-category="science">科普知识</div>
-            </div>
+  <header class="topbar blur-card">
+    <div class="left">
+      <img id="avatar" src="config/rec/origin.png" alt="avatar" class="avatar" onerror="this.src='https://via.placeholder.com/80'"/>
+      <h1 class="site-title">
+        <span class="grad-text">XiaoMoer的小窝</span>
+      </h1>
+    </div>
+    <div class="right">
+      <button id="manageBtn" class="icon-btn" title="管理">
+        <i class="fa-solid fa-user-gear"></i>
+      </button>
+    </div>
+  </header>
 
-            <!-- 文章列表区 -->
-            <div class="article-list" id="articleList">
-                <!-- 文章卡片将通过JavaScript动态生成 -->
-            </div>
+  <main class="container">
+    <nav class="category-tabs blur-card" role="tablist">
+      <button class="tab active" data-type="blog"><i class="fa-solid fa-pen-nib"></i> 博客</button>
+      <button class="tab" data-type="science"><i class="fa-solid fa-flask"></i> 科普</button>
+    </nav>
 
-            <!-- 分页控件 -->
-            <button class="load-more" id="loadMore">加载更多</button>
-        </div>
+    <section id="article-list" class="article-list">
+      <!-- cards appended by JS -->
+    </section>
+
+    <div id="loader" class="loader" aria-hidden="true">
+      <div class="spinner"></div><div class="loader-text">加载中...</div>
     </div>
 
-    <!-- 登录表单 -->
-    <div class="login-form" id="loginForm">
-        <button class="close-btn" id="closeLogin">&times;</button>
-        <h2>管理员登录</h2>
-        <div class="form-group">
-            <label for="username">用户名</label>
-            <input type="text" id="username" placeholder="请输入用户名">
-        </div>
-        <div class="form-group">
-            <label for="password">密码</label>
-            <input type="password" id="password" placeholder="请输入密码">
-        </div>
-        <button class="login-btn" id="loginBtn">登录</button>
+    <div id="list-skeleton" class="skeleton-wrapper" aria-hidden="true">
+      <!-- skeleton cards -->
     </div>
+  </main>
 
-    <!-- 管理按钮 -->
-    <div class="admin-btn" id="adminBtn">
-        <span>⚙️</span>
+  <footer class="footer blur-card">
+    © 2025 XiaoMoer的小窝 | 个人博客
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal hidden" aria-hidden="true" role="dialog">
+    <div class="modal-content blur-card">
+      <h3>管理登录</h3>
+      <div class="form-row">
+        <label>用户名</label>
+        <input id="loginUser" type="text" placeholder="用户名"/>
+      </div>
+      <div class="form-row">
+        <label>密码</label>
+        <input id="loginPass" type="password" placeholder="密码"/>
+      </div>
+      <div id="loginError" class="error hidden">用户名或密码错误，请重新输入</div>
+      <div class="modal-actions">
+        <button id="loginCancel" class="btn">取消</button>
+        <button id="loginSubmit" class="btn primary">登录</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // 模拟文章数据
-        const articles = [
-            {
-                id: 1,
-                title: "我的第一篇博客",
-                summary: "这是我在这个小窝写的第一篇文章，记录下我建立这个网站的过程和感受。",
-                content: "<p>这是我的第一篇博客文章。今天，我完成了这个小窝的搭建，感觉非常有成就感。</p><p>从前端设计到后端逻辑，每一个细节都倾注了我的热情和努力。</p>",
-                category: "blog",
-                publishTime: "2023-05-15",
-                readCount: 128
-            },
-            {
-                id: 2,
-                title: "JavaScript闭包详解",
-                summary: "深入浅出地讲解JavaScript中闭包的概念、原理和应用场景。",
-                content: "<p>闭包是JavaScript中一个非常重要的概念。简单来说，闭包是指有权访问另一个函数作用域中变量的函数。</p><pre><code>function outer() {\n  let count = 0;\n  return function inner() {\n    count++;\n    return count;\n  };\n}</code></pre>",
-                category: "blog",
-                publishTime: "2023-05-20",
-                readCount: 256
-            },
-            {
-                id: 3,
-                title: "黑洞是什么？",
-                summary: "用通俗易懂的语言解释黑洞的概念、形成和特性。",
-                content: "<p>黑洞是宇宙中一种极其特殊的天体，它的引力极强，甚至连光也无法逃脱。</p><p>黑洞的形成通常与恒星的生命周期有关。当质量足够大的恒星耗尽燃料后，会发生引力坍缩，形成黑洞。</p>",
-                category: "science",
-                publishTime: "2023-05-25",
-                readCount: 312
-            },
-            {
-                id: 4,
-                title: "量子计算入门",
-                summary: "介绍量子计算的基本原理、优势以及当前的发展状况。",
-                content: "<p>量子计算是一种基于量子力学原理的计算方式，它利用量子比特（qubit）的叠加和纠缠特性，在某些问题上比传统计算机更高效。</p><p>量子比特与传统比特不同，它可以同时处于0和1的状态，这种特性称为叠加。</p>",
-                category: "science",
-                publishTime: "2023-06-01",
-                readCount: 189
-            },
-            {
-                id: 5,
-                title: "CSS Grid布局完全指南",
-                summary: "全面介绍CSS Grid布局系统的使用方法、属性和实际应用案例。",
-                content: "<p>CSS Grid布局是CSS中一种强大的二维布局系统，可以同时控制行和列。</p><p>通过grid-template-columns和grid-template-rows属性，我们可以定义网格的结构。</p>",
-                category: "blog",
-                publishTime: "2023-06-10",
-                readCount: 275
-            },
-            {
-                id: 6,
-                title: "DNA与基因编辑技术",
-                summary: "科普DNA的结构、功能以及CRISPR等基因编辑技术的原理和应用。",
-                content: "<p>DNA是生物体内存储遗传信息的分子，它由两条螺旋链组成，形成著名的双螺旋结构。</p><p>基因编辑技术如CRISPR-Cas9，使科学家能够精确修改DNA序列，这在医学和生物学领域有广泛应用。</p>",
-                category: "science",
-                publishTime: "2023-06-15",
-                readCount: 224
-            }
-        ];
-
-        // DOM元素
-        const articleList = document.getElementById('articleList');
-        const tabs = document.querySelectorAll('.tab');
-        const loadMoreBtn = document.getElementById('loadMore');
-        const loginForm = document.getElementById('loginForm');
-        const adminBtn = document.getElementById('adminBtn');
-        const closeLoginBtn = document.getElementById('closeLogin');
-        const loginBtn = document.getElementById('loginBtn');
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-
-        // 当前状态
-        let currentCategory = 'blog';
-        let currentPage = 1;
-        const articlesPerPage = 4;
-
-        // 初始化页面
-        document.addEventListener('DOMContentLoaded', function() {
-            // 显示初始文章
-            displayArticles();
-            
-            // 设置标签切换事件
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // 更新活跃标签
-                    tabs.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 更新当前分类
-                    currentCategory = this.dataset.category;
-                    currentPage = 1;
-                    
-                    // 重新显示文章
-                    displayArticles();
-                });
-            });
-            
-            // 加载更多按钮事件
-            loadMoreBtn.addEventListener('click', function() {
-                currentPage++;
-                displayArticles(true);
-            });
-            
-            // 管理按钮事件
-            adminBtn.addEventListener('click', function() {
-                // 检查是否已登录
-                const token = localStorage.getItem('token');
-                if (token) {
-                    // 已登录，跳转到管理页面
-                    window.location.href = 'admin.html';
-                } else {
-                    // 未登录，显示登录表单
-                    loginForm.style.display = 'block';
-                }
-            });
-            
-            // 关闭登录表单
-            closeLoginBtn.addEventListener('click', function() {
-                loginForm.style.display = 'none';
-            });
-            
-            // 登录按钮事件
-            loginBtn.addEventListener('click', function() {
-                const username = usernameInput.value;
-                const password = passwordInput.value;
-                
-                // 密码处理：Base64编码 + 字符替换
-                const encodedPassword = btoa(password).replace(/=/g, '!');
-                
-                // 验证用户名和密码
-                if (username === 'XiaoMoer' && encodedPassword === 'V3c4NTg2ODc4OA!!') {
-                    // 生成token并保存
-                    const token = generateToken();
-                    localStorage.setItem('token', token);
-                    
-                    // 隐藏登录表单
-                    loginForm.style.display = 'none';
-                    
-                    // 跳转到管理页面
-                    window.location.href = 'admin.html';
-                } else {
-                    alert('用户名或密码错误！');
-                }
-            });
-            
-            // 快捷键唤醒登录界面 (Ctrl+Alt+M)
-            document.addEventListener('keydown', function(e) {
-                if (e.ctrlKey && e.altKey && e.key === 'm') {
-                    loginForm.style.display = 'block';
-                }
-            });
-        });
-
-        // 显示文章列表
-        function displayArticles(append = false) {
-            // 显示骨架屏
-            if (!append) {
-                articleList.innerHTML = '';
-                for (let i = 0; i < articlesPerPage; i++) {
-                    const skeletonCard = document.createElement('div');
-                    skeletonCard.className = 'article-card';
-                    skeletonCard.innerHTML = `
-                        <div class="skeleton skeleton-title"></div>
-                        <div class="skeleton skeleton-summary"></div>
-                        <div class="skeleton skeleton-summary"></div>
-                        <div class="skeleton skeleton-meta"></div>
-                    `;
-                    articleList.appendChild(skeletonCard);
-                }
-            }
-            
-            // 模拟网络延迟
-            setTimeout(() => {
-                // 过滤文章
-                const filteredArticles = articles.filter(article => article.category === currentCategory);
-                
-                // 计算要显示的文章
-                const startIndex = 0;
-                const endIndex = currentPage * articlesPerPage;
-                const articlesToShow = filteredArticles.slice(startIndex, endIndex);
-                
-                // 清空列表（如果不是追加模式）
-                if (!append) {
-                    articleList.innerHTML = '';
-                }
-                
-                // 生成文章卡片
-                articlesToShow.forEach(article => {
-                    const articleCard = document.createElement('div');
-                    articleCard.className = 'article-card';
-                    articleCard.innerHTML = `
-                        <h3 class="article-title">${article.title}</h3>
-                        <p class="article-summary">${article.summary}</p>
-                        <div class="article-meta">
-                            <span>${article.publishTime}</span>
-                            <span>阅读量: ${article.readCount}</span>
-                        </div>
-                    `;
-                    
-                    // 添加点击事件，跳转到详情页
-                    articleCard.addEventListener('click', function() {
-                        // 增加阅读量
-                        article.readCount++;
-                        
-                        // 跳转到详情页
-                        window.location.href = `detail.html?id=${article.id}`;
-                    });
-                    
-                    articleList.appendChild(articleCard);
-                });
-                
-                // 隐藏或显示加载更多按钮
-                if (endIndex >= filteredArticles.length) {
-                    loadMoreBtn.style.display = 'none';
-                } else {
-                    loadMoreBtn.style.display = 'block';
-                }
-            }, 800); // 模拟网络延迟
-        }
-
-        // 生成随机token
-        function generateToken() {
-            return Math.random().toString(36).substring(2) + Date.now().toString(36);
-        }
-
-        // 保存文章数据到localStorage
-        function saveArticlesToStorage() {
-            localStorage.setItem('articles', JSON.stringify(articles));
-        }
-
-        // 从localStorage加载文章数据
-        function loadArticlesFromStorage() {
-            const storedArticles = localStorage.getItem('articles');
-            if (storedArticles) {
-                articles.length = 0; // 清空现有数组
-                const parsedArticles = JSON.parse(storedArticles);
-                parsedArticles.forEach(article => {
-                    articles.push(article);
-                });
-            }
-        }
-
-        // 初始化时从localStorage加载数据
-        loadArticlesFromStorage();
-    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="config/JavaScript/login.js"></script>
+  <script src="config/JavaScript/script.js"></script>
 </body>
 </html>
