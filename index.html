@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+  <title>XiaoMoer.的小窝</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="style.css">
+  <!-- 引入MD解析库 -->
+  <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+</head>
+<body class="body-A">
+  <div class="card">
+    <!-- 头像+标题区域 -->
+    <div class="header-row">
+      <box class="box-A">
+        <img src="icon.ico" class="avatar">
+      </box>
+      <div class="title-group">
+        <h1 class="title">𝑋𝑖𝑎𝑜𝑀𝑜𝑒𝑟.<sub style="font-size: 26px;">𝒐𝑭小窝</sub></h1>
+        <p class="subtitle">我的博客_</p>
+      </div>
+    </div>
+
+    <!-- 顶部选项栏 -->
+    <nav class="option-bar">
+      <a href="javascript:;" class="option-item active" data-type="all">全部文章</a>
+      <a href="javascript:;" class="option-item" data-type="life">生活随笔</a>
+      <a href="javascript:;" class="option-item" data-type="tech">技术分享</a>
+      <a href="javascript:;" class="option-item" data-type="about">关于我</a>
+    </nav>
+
+    <!-- 主体内容区：左侧文章列表 + 右侧内容展示 -->
+    <div class="main-container">
+      <!-- 左侧：文章列表 -->
+      <div class="article-list" id="articleList">
+        <p style="text-align: center; color: #777; padding: 20px 0;">加载文章列表中...</p>
+      </div>
+
+      <!-- 右侧：文章内容展示区 -->
+      <div class="content-display" id="contentDisplay">
+        <p style="text-align: center; color: #777; padding: 80px 0;">选择左侧文章查看内容</p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <p>© 2024 XiaoMoer.的小窝 | 用热爱记录生活</p>
+      <div class="footer-extra">
+        <p>联系我：xiaomoer_blog@163.com</p>
+        <p>HTML/CSS/JS + Markdown 搭建</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 核心功能脚本（新增图片大小控制） -->
+  <script>
+    const converter = new showdown.Converter();
+    const optionItems = document.querySelectorAll('.option-item');
+    const articleList = document.getElementById('articleList');
+    const contentDisplay = document.getElementById('contentDisplay');
+
+    // 文章数据
+    const articleData = [
+      {
+        id: 1,
+        title: "我的第一篇博客：开始记录生活",
+        type: "life",
+        date: "2024-01-01",
+        path: "mdFiles/life/文章1.md"
+      },
+      {
+        id: 2,
+        title: "周末探店：一家治愈系咖啡馆",
+        type: "life",
+        date: "2024-01-10",
+        path: "mdFiles/life/文章2.md" // 含图片的文章
+      },
+      {
+        id: 3,
+        title: "CSS渐变动画的小技巧",
+        type: "tech",
+        date: "2024-01-05",
+        path: "mdFiles/tech/文章3.md"
+      },
+      {
+        id: 4,
+        title: "HTML布局入门：Flexbox实战",
+        type: "tech",
+        date: "2024-01-15",
+        path: "mdFiles/tech/文章4.md"
+      }
+    ];
+
+    // 初始加载全部文章
+    renderArticleList('all');
+
+    // 选项栏切换事件
+    optionItems.forEach(item => {
+      item.addEventListener('click', function() {
+        optionItems.forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        const type = this.getAttribute('data-type');
+        
+        renderArticleList(type);
+        
+        if (type === 'about') {
+          loadMdContent('mdFiles/关于我.md');
+        } else {
+          contentDisplay.innerHTML = '<p style="text-align: center; color: #777; padding: 80px 0;">选择左侧文章查看内容</p>';
+        }
+      });
+    });
+
+    // 渲染文章列表
+    function renderArticleList(type) {
+      let filteredArticles = articleData;
+      if (type !== 'all' && type !== 'about') {
+        filteredArticles = articleData.filter(art => art.type === type);
+      }
+
+      if (filteredArticles.length === 0) {
+        articleList.innerHTML = '<p style="text-align: center; color: #777; padding: 20px 0;">暂无该分类文章</p>';
+        return;
+      }
+
+      let html = '';
+      filteredArticles.forEach(art => {
+        html += `
+          <div class="article-item" data-path="${art.path}">
+            <h3 class="article-title">${art.title}</h3>
+            <p class="article-meta">发布于 ${art.date} · 分类：${art.type === 'life' ? '生活随笔' : '技术分享'}</p>
+          </div>
+        `;
+      });
+      articleList.innerHTML = html;
+
+      document.querySelectorAll('.article-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const mdPath = this.getAttribute('data-path');
+          loadMdContent(mdPath);
+        });
+      });
+    }
+
+    // 加载并解析MD内容（新增图片处理）
+    function loadMdContent(mdPath) {
+      contentDisplay.innerHTML = '<p style="text-align: center; color: #777; padding: 80px 0;">加载中...</p>';
+
+      fetch(mdPath)
+        .then(response => {
+          if (!response.ok) throw new Error('内容加载失败');
+          return response.text();
+        })
+        .then(mdText => {
+          const html = converter.makeHtml(mdText);
+          contentDisplay.innerHTML = html;
+          // MD解析后，统一处理所有图片大小
+          handleImagesSize();
+        })
+        .catch(error => {
+          contentDisplay.innerHTML = `<p style="text-align: center; color: #ff4444; padding: 80px 0;">${error.message}</p>`;
+        });
+    }
+
+    // 核心：控制图片大小（限制最大宽度和高度）
+    function handleImagesSize() {
+      const allImages = contentDisplay.querySelectorAll('img');
+      const maxWidth = 700; // 图片最大宽度（可调整）
+      const maxHeight = 500; // 图片最大高度（可调整）
+
+      allImages.forEach(img => {
+        // 设置图片加载完成后再调整大小
+        img.onload = function() {
+          // 保持图片比例，限制在最大尺寸内
+          const imgWidth = img.naturalWidth;
+          const imgHeight = img.naturalHeight;
+
+          if (imgWidth > maxWidth || imgHeight > maxHeight) {
+            const widthRatio = maxWidth / imgWidth;
+            const heightRatio = maxHeight / imgHeight;
+            const scaleRatio = Math.min(widthRatio, heightRatio); // 取最小比例，避免超出
+
+            img.style.width = `${imgWidth * scaleRatio}px`;
+            img.style.height = 'auto'; // 高度自动适应，保持比例
+          }
+          // 添加图片样式（边框、间距等）
+          img.style.borderRadius = '8px';
+          img.style.margin = '15px auto';
+          img.style.display = 'block'; // 图片居中显示
+        }
+
+        // 处理加载失败的图片
+        img.onerror = function() {
+          img.alt = '图片加载失败';
+          img.style.border = '1px dashed #ff4444';
+          img.style.padding = '20px';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
