@@ -71,7 +71,7 @@
 
 .subtitle {
   margin: 5px 0 0 3px;
-  transform: translateY(-25px); /* 核心属性：Y轴向上偏移15px */
+  transform: translateY(-20px); /* 核心属性：Y轴向上偏移15px */
   font-size: 20px;
   color: #d4af37;
   text-shadow: 0 0 5px rgba(212,175,55,0.4);
