@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="config/font/BL.ttf" as="font" type="font/truetype" crossorigin>
+    <link rel="icon" href="favicon.ico" type="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="LOG/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="LOG/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="LOG/favicon-16x16.png">
+    <link rel="manifest" href="LOG/site.webmanifest">
+    <title>500 - 服务器错误</title>
+    <link rel="stylesheet" href="config/css/null.css">
+    <style>
+        /* 500页面主色调保留 */
+        .error-code { color: #f59e0b; }
+        @media (prefers-color-scheme: dark) { .error-code { color: #fcd34d; } }
+        .error-card { background: linear-gradient(135deg, #fbbf24, #fde68a); }
+    </style>
+</head>
+<body>
+    <div class="error-card">
+        <div class="card-content">
+            <div class="error-code" style="transform: translateX(25px);">500<sub style="font-size: 20px;">.html</sub></div>
+            <h2 class="error-title">哎呀 (๑˃̵ᴗ˂̵)و 服务器打了个盹～</h2>
+            <p class="error-desc">服务器内部暂时出现问题，技术人员已在修复，建议稍后刷新页面或返回首页。</p>
+            <!-- 添加 inline-block 使按钮同排，保留原有 margin 控制间距 -->
+            <button class="back-btn" style="display: inline-block;" onclick="window.location.reload()">●刷新页面</button>
+            <button class="back-btn" style="display: inline-block; margin-left: 1rem;" onclick="window.location.href='index.html'">◀返回首页</button>
+        </div>
+    </div>
+</body>
+</html>

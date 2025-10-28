@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="config/font/BL.ttf" as="font" type="font/truetype" crossorigin>
+    <link rel="icon" href="favicon.ico" type="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="LOG/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="LOG/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="LOG/favicon-16x16.png">
+    <link rel="manifest" href="LOG/site.webmanifest">
+    <title>403 - 禁止访问</title>
+    <link rel="stylesheet" href="config/css/null.css">
+    <style>
+        /* 差异化：调整403页面主色调 */
+        .error-code { color: #d946ef; }
+        @media (prefers-color-scheme: dark) { .error-code { color: #f0abfc; } }
+        .error-card { background: linear-gradient(135deg, #c084fc, #a78bfa); }
+    </style>
+</head>
+<body>
+    <div class="error-card">
+        <div class="card-content">
+            <div class="error-code" style="transform: translateX(25px);">403<sub style="font-size: 20px;">.html</sub></div>
+            <h2 class="error-title">抱歉₍₍ (̨̡ ‾᷄ᗣ‾᷅ )̧̢ ₎₎ 你没有访问权限～</h2>
+            <p class="error-desc">该页面仅对特定用户开放，可能需要登录或申请权限，建议返回首页更换访问内容。</p>
+            <button class="back-btn" onclick="window.location.href='index.html'">◀返回首页</button>
+        </div>
+    </div>
+</body>
+</html>
