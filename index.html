@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title>XiaoMoer.的小窝</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f9f7f4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1e1e24" media="(prefers-color-scheme: dark)">
+    
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="config/css/style.css">
+    <link rel="preload" href="config/font/BL.ttf" as="font" type="font/truetype" crossorigin>
+    
+    <!-- 图标配置 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="LOG/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="LOG/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="LOG/favicon-16x16.png">
+    <link rel="manifest" href="LOG/site.webmanifest">
+    
+    <!-- MD解析库 -->
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+</head>
+<body class="BOX-A">
+    <div class="card fade-in-up">
+        <!-- 页面结构保持不变 -->
+        <div class="font-A header-row">
+            <div class="box-A">
+                <img src="LOG/tx.ico" class="avatar" alt="头像" onerror="this.src='LOG/tx.ico'">
+            </div>
+            <div class="title-wrap">
+                <h1 class="title">𝑋𝑖𝑎𝑜𝑀𝑜𝑒𝑟.<sub style="font-size: 16px;">𝒐𝑭小窝</sub></h1>
+                <p class="subtitle"></h1><u style="color: #d4af37;">Welcome to M</u>Y BloG</h1></p>
+            </div>
+        </div>
+        <nav class="option-bar">
+            <a href="javascript:;" class="option-item active" data-type="all">全部文章</a>
+            <a href="javascript:;" class="option-item" data-type="life">生活随笔</a>
+            <a href="javascript:;" class="option-item" data-type="tech">技术分享</a>
+            <a href="javascript:;" class="option-item" data-type="about">关于我</a>
+        </nav>
+        <div class="main-container">
+            <div class="side-container" id="sideContainer">
+                <p style="text-align: center; color: var(--text-secondary); padding: 20px 0;">加载文章列表中...</p>
+            </div>
+            <div class="content-display" id="contentDisplay">
+                <p class="font-A" style="text-align: center; color: var(--text-secondary); padding: 80px 0;">选择左侧文章查看内容</p>
+            </div>
+        </div>
+        <footer class="footer">
+            <p class="font-A">© 2024 XiaoMoer.的小窝 | 用热爱记录生活</p>
+            <div class="footer-extra"><p class="font-A"> HTML/CSS/JS AND Markdown.</p></div>
+        </footer>
+    </div>
+
+    <!-- 引入JS文件 -->
+    <script src="config/js/default.js"></script>
+</body>
+</html>
