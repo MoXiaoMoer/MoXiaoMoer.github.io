@@ -28,6 +28,63 @@
   100% { background-position: 0% 50%; }
 }
 
+/* 暗色模式变量定义 */
+:root.dark-mode {
+  --bg-body: #1A1A1A;
+  --card-bg: linear-gradient(45deg, #2C2C2C, #3D3D5C);
+  --text-main: #E0E0E0;
+  --text-secondary: #B0B0B0;
+  --card-item-bg: rgba(50, 50, 50, 0.8);
+  --card-item-hover: #444444;
+  --border-color: rgba(80, 80, 80, 0.5);
+  --code-bg: #333333;
+  --code-color: #FFB3BA;
+}
+
+/* 亮色模式变量（默认） */
+:root {
+  --bg-body: #A0A0A0;
+  --card-bg: linear-gradient(45deg, #FFD7DE, #C8DCF0);
+  --text-main: #444444;
+  --text-secondary: #777777;
+  --card-item-bg: rgba(255,255,255,0.8);
+  --card-item-hover: white;
+  --border-color: rgba(255,255,255,0.5);
+  --code-bg: #f5f5f5;
+  --code-color: #d32f2f;
+}
+
+/* 替换原有样式为变量引用（关键修改项） */
+.body-A { background-color: var(--bg-body); }
+.card { background: var(--card-bg); }
+.article-item { background-color: var(--card-item-bg); color: var(--text-main); }
+.article-item:hover { background-color: var(--card-item-hover); }
+.content-display { background-color: var(--card-item-hover); color: var(--text-main); }
+.footer, .article-meta { color: var(--text-secondary); }
+.option-item { color: var(--text-main); }
+.option-bar, .footer { border-top-color: var(--border-color); border-bottom-color: var(--border-color); }
+.content-display h1, .content-display h2 { color: var(--text-main); }
+.content-display code, .content-display pre { background-color: var(--code-bg); color: var(--code-color); }
+
+/* 切换按钮样式 */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
 /* 头像+标题 */
 .header-row {
   display: flex;
