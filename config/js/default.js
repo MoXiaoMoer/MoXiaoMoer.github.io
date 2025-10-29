@@ -19,7 +19,7 @@ const optionItems = document.querySelectorAll('.option-item');
 // 文章数据
 const articles = [
     { id: 1, title: "我的第一篇博客：开始记录生活", type: "life", date: "2025-10-30", path: "mdFiles/life/1.md" },
-    { id: 2, title: "网页解析分享", type: "tech", date: "2025-10-30", path: "mdFiles/tech/2.md" }
+    { id: 2, title: "电池寿数决", type: "tech", date: "2025-10-30", path: "mdFiles/tech/2.md" }
 ];
 
 // 页面加载初始化
