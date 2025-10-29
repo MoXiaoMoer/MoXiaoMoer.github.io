@@ -1,1 +1,1 @@
-{"YZ":"\\{.*\"last_value_CycleCount\":[0-9]+,.*\"last_value_NominalChargeCapacity\":[0-9]+,.*\\}","cloud":{"name":"电池寿数决","title":{"1":"电池寿数决🔋"},"version":1}}
+{"YZ":"\\{.*\"last_value_CycleCount\":[0-9]+,.*\"last_value_NominalChargeCapacity\":[0-9]+,.*\\}","cloud":{"name":"电池寿数决","title":{"1":"电池寿数决🔋"},"version":"1.0"}}
