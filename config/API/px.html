@@ -1,1 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>屏幕像素信息（带px）</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 50px; text-align: center; font-size: 20px; }
+        .pixel-info { margin: 20px 0; font-weight: bold; color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <h1>📺 屏幕像素信息</h1>
+    <div class="pixel-info">屏幕宽度：<span id="screen-width"></span></div>
+    <div class="pixel-info">屏幕高度：<span id="screen-height"></span></div>
+    <div class="pixel-info" style="color: #e74c3c; font-size: 24px;">总像素数：<span id="total-pixels"></span></div>
 
+    <script>
+        // 获取屏幕物理像素值并拼接px单位
+        const width = `${screen.width}px`;
+        const height = `${screen.height}px`;
+        const total = `${screen.width * screen.height}px`;
+
+        // 渲染到页面
+        document.getElementById('screen-width').textContent = width;
+        document.getElementById('screen-height').textContent = height;
+        document.getElementById('total-pixels').textContent = total;
+    </script>
+</body>
+</html>
