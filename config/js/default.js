@@ -84,12 +84,10 @@ function loadAboutSidebar() {
         <div class="side-module">
             <h3 class="module-title">🏠 关于小窝</h3>
             <ul class="module-list">
-	            <p class="font-A">
 				<li>记录生活感悟</li>
                 <li>分享技术笔记</li>
                 <li>收藏实用工具</li>
                 <li>交流学习成长</li>
-				</p>
             </ul>
         </div>
     `;
@@ -106,7 +104,7 @@ function renderArticleList(type) {
         showArticles.forEach(art => {
             listHtml += `
                 <div class="article-item" data-path="${art.path}" data-title="${art.title}">
-                    <h3 class="article-title">${art.title}</h3>
+                    <h3 class="article-title"><h1 class="title"><p class="font-A">${art.title}</p></h1></h3>
                     <p class="article-meta">发布于 ${art.date} · 分类：${art.type === 'life' ? '生活随笔' : '快捷指令'}</p>
                 </div>
             `;
