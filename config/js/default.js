@@ -53,8 +53,8 @@ function loadAboutSidebar() {
             <h3 class="module-title">🔗 友情链接</h3>
             <ul class="module-list">
 				        <li><a href="https://github.com" target="_blank" class="side-link">GitHub</a></li>
-								<li><a href="https://mitce.net/login" target="_blank" class="side-link">Mitce_节点🚀</a></li>
-								<li><a href="https://yjn.host/index.php/user/#" target="_blank" class="side-link">YJNHOST虚拟主机📦</a></li>
+						<li><a href="https://mitce.net/login" target="_blank" class="side-link">Mitce_节点🚀</a></li>
+						<li><a href="https://yjn.host/index.php/user/#" target="_blank" class="side-link">YJNHOST虚拟主机📦</a></li>
             </ul>
         </div>
         <div class="side-module">
@@ -73,21 +73,23 @@ function loadAboutSidebar() {
         <div class="side-module">
             <h3 class="module-title">📱 联系我</h3>
             <ul class="module-list">
-        <li><a href="mailto:Moji_Qr@icloud.com" target="_blank" class="side-link">邮箱：Moji_Qr@icloud.com</a> - 点击直接发送邮件，长期在线回复</li>
-        <li><a href="https://qm.qq.com/q/lUTB5LsSQw" target="_blank" class="side-link">QQ：点击添加好友</a> - 跳转QQ添加页面，备注“小窝访客”优先通过</li>
-        <li><a href="http://weibo.cn/qr/userinfo?featurecode=profile_qrcode&uid=8010601199" target="_blank" class="side-link">微博：@是墨晓陌</a> - 直达微博主页，可关注/私信互动</li>
-        <li><a href="https://pd.qq.com/s/d0ebltnv3?b=9" target="_blank" class="side-link">QQ频道：XiaoMoer的精神病院</a> - 加入频道参与话题分享，找同好交流</li>
-        <li><a href="https://t.me/MxMTG_CH" target="_blank" class="side-link">TG频道：MxMTG_CH</a> - 订阅频道获取最新动态，支持匿名交流</li>
-        <li><a href="https://t.me/MxMTG_G" target="_blank" class="side-link">TG群聊：MxMTG_G</a> - 加入群聊实时互动，适合技术/生活话题讨论</li>
+        <li><a href="mailto:Moji_Qr@icloud.com" target="_blank" class="side-link">📮邮箱：Moji_Qr@icloud.com</a> - 点击直接发送邮件，长期在线回复</li>
+        <li><a href="https://qm.qq.com/q/lUTB5LsSQw" target="_blank" class="side-link">🐧QQ：点击添加好友</a> - 跳转QQ添加页面，备注“小窝访客”优先通过</li>
+        <li><a href="http://weibo.cn/qr/userinfo?featurecode=profile_qrcode&uid=8010601199" target="_blank" class="side-link">👁️微博：@是墨晓陌</a> - 直达微博主页，可关注/私信互动</li>
+        <li><a href="https://pd.qq.com/s/d0ebltnv3?b=9" target="_blank" class="side-link">🫧QQ频道：XiaoMoer的精神病院</a> - 加入频道参与话题分享，找同好交流</li>
+        <li><a href="https://t.me/MxMTG_CH" target="_blank" class="side-link">🔊TG频道：MxMTG_CH</a> - 订阅频道获取最新动态，支持匿名交流</li>
+        <li><a href="https://t.me/MxMTG_G" target="_blank" class="side-link">💬TG群聊：MxMTG_G</a> - 加入群聊实时互动，适合技术/生活话题讨论</li>
             </ul>
         </div>
         <div class="side-module">
             <h3 class="module-title">🏠 关于小窝</h3>
             <ul class="module-list">
-                <li>记录生活感悟</li>
+	            <p class="font-A">
+				<li>记录生活感悟</li>
                 <li>分享技术笔记</li>
                 <li>收藏实用工具</li>
                 <li>交流学习成长</li>
+				</p>
             </ul>
         </div>
     `;
