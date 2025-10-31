@@ -105,7 +105,7 @@ function renderArticleList(type) {
             listHtml += `
                 <div class="article-item" data-path="${art.path}" data-title="${art.title}">
                     <h3 class="article-title">${art.title}</h3>
-                    <p class="article-meta">发布于 ${art.date} · 分类：${art.type === 'life' ? '生活随笔' : '技术分享'}</p>
+                    <p class="article-meta">发布于 ${art.date} · 分类：${art.type === 'life' ? '生活随笔' : '快捷指令'}</p>
                 </div>
             `;
         });
