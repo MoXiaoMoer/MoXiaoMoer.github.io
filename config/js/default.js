@@ -104,8 +104,8 @@ function renderArticleList(type) {
         showArticles.forEach(art => {
             listHtml += `
                 <div class="article-item" data-path="${art.path}" data-title="${art.title}">
-                    <h3 class="article-title"><h1 class="title"><p class="font-A">${art.title}</p></h1></h3>
-                    <p class="article-meta">发布于 ${art.date} · 分类：${art.type === 'life' ? '生活随笔' : '快捷指令'}</p>
+                    <h3 class="article-title">${art.title}</h3>
+                    <p class="article-meta">发布于 ${art.date} · 分类：${art.type === 'life' ? '生活随笔' : '快捷指令'}</p>  
                 </div>
             `;
         });
@@ -226,7 +226,7 @@ function handleBlurImages() {
     });
 
     let blurTimer = null;
-    contentDisplay.querySelectorAll('.blur-img-container').forEach(container => {
+    contentDisplay.querySelectorAll('.blur-img-container').forEach(container => {  
         container.addEventListener('click', function() {
             if (blurTimer) clearTimeout(blurTimer);
             this.classList.add('active');
